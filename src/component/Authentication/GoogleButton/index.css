@@ -1,0 +1,28 @@
+.btn-google {
+    background-color: white; /* Màu nền trắng */
+    border: 1px solid lightgray; /* Đường viền mỏng màu xám nhạt */
+    color: black; /* Màu chữ đen */
+    display: flex; /* Sử dụng flexbox để căn giữa */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center;
+    padding: 5px 15px; /* Khoảng cách trong nút */
+    border-radius: 5px; /* Góc bo tròn */
+    width: 100%;
+  }
+
+  .btn-google img {
+    width: 20px !important; /* Kích thước icon Google */
+    height: 20px !important;
+    margin-right: 10px; /* Khoảng cách giữa icon và text */
+  }
+
+  .btn-google:hover {
+    background-color: #f1f1f1;
+  }
+
+  .btn-google span{
+    font-weight: 500;
+    color: var(--primary-color)
+  }
+
+

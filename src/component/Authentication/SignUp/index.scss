@@ -1,0 +1,28 @@
+.required-label {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.required-label::before {
+    content: "*";
+    color: red;
+    margin-right: 0.5px;
+}
+
+/* SignUp.css */
+#form-sign-up {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .col-md-6 {
+        width: 100%;
+    }
+}

@@ -1,0 +1,16 @@
+.active-status{
+    color: green;
+    font-weight: bolder;
+}
+.inactive-status{
+    color: red;
+    font-weight: bolder;
+}
+.ant-input,
+.ant-radio-wrapper,
+.ant-radio-wrapper-checked,
+.ant-select-selection-item,
+.ant-select-selector {
+  background-color: white !important;
+  color: black !important;
+}

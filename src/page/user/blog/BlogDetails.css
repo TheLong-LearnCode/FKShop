@@ -1,0 +1,35 @@
+.blog-details-container {
+    padding: 20px;
+    border-bottom: 2px solid #000F8F;
+    overflow: hidden;
+}
+
+.blog-title {
+    font-size: 2em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.blog-details {
+    margin-top: 20px;
+    text-align: justify;
+}
+
+.blog-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 var(--primary-color);
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
+.blog-date {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 10px;
+}

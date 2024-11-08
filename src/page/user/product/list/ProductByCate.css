@@ -1,0 +1,42 @@
+.product-list-container{
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.product-list-container h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px 0;
+    color:  var(--secondary-color);
+    display: flex;
+  }
+
+  .product-list-container h2 span{
+    background-color: var(--secondary-color);
+    width: 5px;
+    margin-right: 5px;
+  }
+
+  .product-list-buttons {
+    margin-bottom: 20px;
+}
+.product-list-buttons .btn-asc {
+    margin-right: 5px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1rem;
+    font-weight: 400;
+    border: 1px solid var(--primary-color);
+}
+
+.product-list-buttons .btn.active{
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.product-list-buttons .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+
+}

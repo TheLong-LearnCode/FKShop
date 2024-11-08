@@ -1,0 +1,38 @@
+.support-container {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.support-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.custom-tabs {
+  width: 100%;
+}
+
+.custom-tabs .ant-tabs-nav {
+  margin-bottom: 0;
+}
+
+.custom-tabs .ant-tabs-nav::before {
+  border-bottom: none;
+}
+
+.custom-tabs .ant-tabs-tab {
+  padding: 8px 16px;
+}
+
+.custom-tabs .ant-tabs-tab + .ant-tabs-tab {
+  margin-left: 8px;
+}
+
+.status-count {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-weight: bold;
+}
+

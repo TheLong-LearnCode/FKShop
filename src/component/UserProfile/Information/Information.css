@@ -1,0 +1,62 @@
+.profile-card {
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ant-descriptions-item-label {
+  font-weight: bold;
+}
+
+.ant-descriptions-item-content {
+  font-size: 16px;
+}
+
+.ant-card-body {
+  padding: 24px;
+}
+
+.ant-typography {
+  margin-bottom: 0;
+}
+.profile-avatar-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1em;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.camera-icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.profile-avatar-container:hover .camera-icon-overlay {
+  opacity: 1;
+}

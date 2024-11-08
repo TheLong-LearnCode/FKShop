@@ -1,0 +1,24 @@
+.sticky-top {
+  position: sticky;
+  top: 20px;
+}
+
+.order-summary {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.order-summary a{
+  text-decoration: none;
+  color: #a49898;
+  display: flex;
+  margin-top: 10px;
+  font-size: 1rem;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.order-summary a:hover{
+  opacity: 1;
+}

@@ -1,0 +1,106 @@
+.lab-table{
+    margin-top: 20px;
+}
+
+/* table{
+    width: 100%;
+} */
+
+.lab-thead{
+    background-color: var(--primary-color);
+}
+
+/* Điện thoại nhỏ */
+@media (max-width: 576px) {
+    .lab-table {
+        margin-top: 10px;
+        overflow-x: auto;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .lab-thead th {
+        padding: 8px 5px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    tbody td {
+        padding: 8px 5px;
+    }
+
+    .btn {
+        padding: 4px 8px;
+    }
+
+    .btn box-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    /* Điều chỉnh Select của Ant Design */
+    :global(.ant-select) {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+
+    /* Điều chỉnh Pagination */
+    :global(.ant-pagination) {
+        font-size: 12px;
+    }
+
+    :global(.ant-pagination-item) {
+        min-width: 28px;
+        height: 28px;
+        line-height: 26px;
+    }
+}
+
+/* Điện thoại lớn và tablet nhỏ */
+@media (min-width: 576px) and (max-width: 768px) {
+    .lab-table {
+        margin-top: 15px;
+        overflow-x: auto;
+    }
+
+    .table {
+        font-size: 15px;
+    }
+
+    .lab-thead th {
+        padding: 10px 8px;
+        font-size: 15px;
+    }
+
+    tbody td {
+        padding: 10px 8px;
+    }
+
+    .btn {
+        padding: 5px 10px;
+    }
+
+    .btn box-icon {
+        width: 22px !important;
+        height: 22px !important;
+    }
+
+    /* Điều chỉnh Select của Ant Design */
+    :global(.ant-select) {
+        width: 250px !important;
+        margin-bottom: 15px;
+    }
+
+    /* Điều chỉnh Pagination */
+    :global(.ant-pagination) {
+        font-size: 13px;
+    }
+
+    :global(.ant-pagination-item) {
+        min-width: 32px;
+        height: 32px;
+        line-height: 30px;
+    }
+}

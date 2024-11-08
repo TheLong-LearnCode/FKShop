@@ -1,0 +1,21 @@
+.ht{
+    margin-top: 60px;
+}
+.wd{
+    margin-left: 100px;
+}
+.btnCustom{
+    margin-left: 200px;
+}
+
+@media (max-width: 576px) {
+    .wd {
+      margin-left: 0;
+    }
+  }
+      
+  @media (min-width: 576px) and (max-width: 768px) {
+    .wd {
+      margin-left: 0;
+    }
+  }

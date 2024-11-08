@@ -1,0 +1,9 @@
+.ant-input,
+.ant-input-number-input,
+.ant-radio-wrapper,
+.ant-radio-wrapper-checked,
+.ant-select-selection-item,
+.ant-select-selector{
+  background-color: white !important;
+  color: black !important;
+}

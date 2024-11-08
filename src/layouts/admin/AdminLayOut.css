@@ -1,0 +1,17 @@
+/* body{
+    height: 100vh;
+    display: flex;
+} */
+
+.menu-layout {
+    background-color: #f8f9fa; /* Màu nền sidebar */
+    height: 100vh; /* Đảm bảo menu chiếm toàn bộ chiều cao */
+    overflow-y: auto; /* Cho phép cuộn dọc */
+}
+  
+.content-layout {
+    padding: 20px; /* Khoảng cách bên trong nội dung */
+    background-color: #fff; /* Màu nền nội dung */
+    height: 100vh; /* Đảm bảo nội dung chiếm toàn bộ chiều cao */
+    overflow-y: auto; /* Cho phép cuộn dọc */
+}

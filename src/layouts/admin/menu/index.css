@@ -1,0 +1,63 @@
+/* font chữ cho các tab bên side bar .size-nav-item {
+  font-size: 1.7rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #007bff, #00ff99);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.nav-container {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background-color: gray;
+  background-color: gray;
+  width: auto;
+}
+
+.nav-link-item {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px 5px;
+  background-color: #f8f9fa;
+  margin: 3px 0;
+  transition: background-color 0.3s;
+}
+
+.nav-link-item:hover {
+  background-color: #9b9fa2;
+}
+
+.ant-menu-item-selected {
+  background-color: #1890ff !important;
+}
+
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  color: #1890ff !important;
+}
+
+.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon,
+.ant-menu-dark .ant-menu-item-selected .anticon {
+  color: #fff !important;
+}
+
+.ant-menu-dark .ant-menu-item-selected .ant-menu-title-content {
+  color: #fff !important;
+}
+
+.ant-layout-sider-children {
+  background: #001529;
+}
+
+.ant-menu-item a:hover,
+.ant-menu-item-selected a:hover {
+  text-decoration: none;
+}
+
+.ant-menu-submenu-title:hover {
+  text-decoration: none;
+}
+
+.ant-menu a {
+  text-decoration: none;
+} */

@@ -1,0 +1,103 @@
+/* Điện thoại nhỏ */
+@media (max-width: 576px) {
+    /* Select dropdown */
+    .ant-select {
+        font-size: 12px !important;
+    }
+
+    .ant-select-selector {
+        height: 40px !important;
+    }
+
+    .ant-select-selection-item {
+        padding: 4px !important;
+    }
+
+    /* Product image và tên trong dropdown */
+    .d-flex img {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .d-flex p {
+        font-size: 12px !important;
+        margin-left: 8px !important;
+    }
+
+    /* Rating stars */
+    .ant-rate {
+        font-size: 20px !important;
+    }
+
+    .ant-rate-star {
+        margin-right: 4px !important;
+    }
+
+    /* Headings */
+    h6 {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Textarea */
+    .ant-input {
+        font-size: 12px !important;
+        padding: 8px !important;
+    }
+
+    .ant-input::placeholder {
+        font-size: 12px !important;
+    }
+}
+
+/* Điện thoại lớn và tablet nhỏ */
+@media (min-width: 576px) and (max-width: 768px) {
+    /* Select dropdown */
+    .ant-select {
+        font-size: 13px !important;
+    }
+
+    .ant-select-selector {
+        height: 45px !important;
+    }
+
+    .ant-select-selection-item {
+        padding: 6px !important;
+    }
+
+    /* Product image và tên trong dropdown */
+    .d-flex img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .d-flex p {
+        font-size: 13px !important;
+        margin-left: 10px !important;
+    }
+
+    /* Rating stars */
+    .ant-rate {
+        font-size: 22px !important;
+    }
+
+    .ant-rate-star {
+        margin-right: 6px !important;
+    }
+
+    /* Headings */
+    h6 {
+        font-size: 15px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Textarea */
+    .ant-input {
+        font-size: 13px !important;
+        padding: 10px !important;
+    }
+
+    .ant-input::placeholder {
+        font-size: 13px !important;
+    }
+}

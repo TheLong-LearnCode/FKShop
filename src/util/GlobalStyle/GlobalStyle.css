@@ -1,0 +1,18 @@
+.fixed-header{
+    margin-top: 150px;
+}
+.form-message {
+    color: red;
+    font-size: 0.8rem !important;
+    line-height: 0.5rem;
+    padding: 2px 0 0;
+
+}
+.form-control:focus {
+    border-color: var(--primary-color);
+    /* Viền đen khi focus */
+    outline: none;
+    /* Loại bỏ viền mặc định màu xanh của trình duyệt */
+    box-shadow: none;
+    /* Loại bỏ hiệu ứng đổ bóng mặc định nếu có */
+}

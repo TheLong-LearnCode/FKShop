@@ -1,0 +1,68 @@
+footer {
+    background-color: var(--primary-color);
+    color: #ffff;
+    padding: 20px; /* Thêm padding cho footer */
+}
+
+.footer-logo {
+    max-width: 250px;
+    height: auto;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+    color: var(--third-color);
+}
+
+/* Responsive Styles */
+
+/* Điện thoại di động */
+@media (max-width: 576px) {
+    footer {
+        text-align: center; /* Căn giữa nội dung */
+        padding: 15px; /* Giảm padding */
+    }
+
+    .footer-logo {
+        max-width: 200px; /* Giảm kích thước logo */
+    }
+
+    .social-icons a {
+        font-size: 1.2rem; /* Giảm kích thước biểu tượng */
+    }
+}
+
+/* Tablet và iPad */
+@media (min-width: 577px) and (max-width: 768px) {
+    footer {
+        text-align: center; /* Căn giữa nội dung */
+        padding: 20px; /* Padding cho tablet */
+    }
+
+    .footer-logo {
+        max-width: 220px; /* Điều chỉnh kích thước logo */
+    }
+
+    .social-icons a {
+        font-size: 1.4rem; /* Điều chỉnh kích thước biểu tượng */
+    }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    footer {
+        text-align: left; /* Căn trái nội dung */
+        padding: 20px; /* Padding cho desktop */
+    }
+
+    .footer-logo {
+        max-width: 250px; /* Kích thước logo cho desktop */
+    }
+
+    .social-icons a {
+        font-size: 1.5rem; /* Kích thước biểu tượng cho desktop */
+    }
+}

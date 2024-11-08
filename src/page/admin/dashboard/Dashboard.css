@@ -1,0 +1,66 @@
+.revenue-card, .customer-card, .order-card {
+    background: linear-gradient(90deg, rgba(0,212,255,1) 73%, rgba(9,9,121,1) 100%);
+    border-radius: 10px;
+    height: 100%;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.revenue-card:hover, .customer-card:hover, .order-card:hover {
+    transform: translateY(-10px);
+}
+
+.revenue-card h4 {
+    color: blue;
+}
+
+.revenue-card p {
+    font-size: 2rem;
+    color: blue;
+    font-weight: 600;
+}
+
+.customer-card {
+    background: linear-gradient(90deg, rgba(34,193,195,1) 73%, rgba(253,187,45,1) 100%);
+}
+
+.customer-card h4 {
+    color: green;
+}
+
+.customer-card p {
+    font-size: 2rem;
+    color: green;
+    font-weight: 600;
+}
+
+.order-card {
+    background: linear-gradient(90deg, rgba(252,176,69,1) 73%, rgba(253,29,29,1) 100%);
+}
+
+.order-card h4 {
+    color: yellow;
+}
+
+.order-card p {
+    font-size: 2rem;
+    color: yellow;
+    font-weight: 600;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    min-height: 400px;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-danger {
+    color: #dc3545;
+}

@@ -1,0 +1,46 @@
+.ellipsis-text {
+  display: inline-block;
+  max-width: 150px;  /* Điều chỉnh chiều rộng theo ý muốn */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.disable-form-layout {
+  background-color: white !important;
+  color: black !important;
+}
+.active-status{
+  color: green;
+  font-weight: bolder;
+}
+.inactive-status{
+  color: red;
+  font-weight: bolder;
+}
+.ant-form-item-label {
+  font-weight: bolder;
+}
+/* .ant-radio-group, */
+.ant-input,
+.ant-input-number-input,
+.ant-radio-wrapper,
+.ant-radio-wrapper-checked,
+.ant-select-selection-item,
+.ant-select-selector{
+  background-color: white !important;
+  color: black !important;
+}
+.ant-modal-title{
+  text-align: center;
+  vertical-align: middle;
+  font-size: x-large !important;
+  font-weight: bolder !important;
+}
+.product-details-number{
+  width: 40% !important;
+}
+
+
+
+

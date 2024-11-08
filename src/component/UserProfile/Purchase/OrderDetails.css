@@ -1,0 +1,141 @@
+/* Điện thoại nhỏ */
+@media (max-width: 576px) {
+    /* Card styles */
+    .ant-card {
+        margin: 5px !important;
+    }
+
+    .ant-card-head-title {
+        font-size: 14px !important;
+        padding: 8px 0 !important;
+    }
+
+    .ant-card-body {
+        padding: 12px !important;
+    }
+
+    /* Customer info */
+    .ant-col-8 {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+
+    .ant-col-8 .ant-card-head {
+        display: none;
+    }
+
+    .ant-col-16 {
+        width: 100% !important;
+    }
+
+    /* Text content */
+    p {
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+    }
+
+    strong {
+        font-size: 12px !important;
+    }
+
+    /* Table styles */
+    .ant-table {
+        font-size: 12px !important;
+    }
+
+    .ant-table-thead > tr > th {
+        padding: 8px 4px !important;
+        white-space: nowrap !important;
+    }
+
+    .ant-table-tbody > tr > td {
+        padding: 8px 4px !important;
+    }
+
+    /* Product image */
+    .ant-image {
+        width: 40px !important;
+    }
+
+    /* Link styles */
+    a {
+        font-size: 12px !important;
+    }
+
+    /* Pagination */
+    .ant-pagination {
+        font-size: 12px !important;
+        margin-top: 10px !important;
+    }
+    
+}
+
+/* Điện thoại lớn và tablet nhỏ */
+@media (min-width: 576px) and (max-width: 768px) {
+    /* Card styles */
+    .ant-card {
+        margin: 8px !important;
+    }
+
+    .ant-col-8 .ant-card-head {
+        display: none;
+    }
+
+    .ant-card-head-title {
+        font-size: 15px !important;
+        padding: 10px 0 !important;
+    }
+
+    .ant-card-body {
+        padding: 15px !important;
+    }
+
+    /* Customer info */
+    .ant-col-8 {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+
+    .ant-col-16 {
+        width: 100% !important;
+    }
+
+    /* Text content */
+    p {
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+    }
+
+    strong {
+        font-size: 13px !important;
+    }
+
+    /* Table styles */
+    .ant-table {
+        font-size: 13px !important;
+    }
+
+    .ant-table-thead > tr > th {
+        padding: 10px 8px !important;
+    }
+
+    .ant-table-tbody > tr > td {
+        padding: 10px 8px !important;
+    }
+
+    /* Product image */
+    .ant-image {
+        width: 45px !important;
+    }
+
+    /* Link styles */
+    a {
+        font-size: 13px !important;
+    }
+
+    /* Pagination */
+    .ant-pagination {
+        font-size: 13px !important;
+        margin-top: 15px !important;
+    }
+}

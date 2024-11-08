@@ -1,0 +1,37 @@
+/* Purchase.css */
+.table-container {
+  max-height: 300px;
+  /* Adjust height as needed */
+  overflow-y: auto;
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #343a40;
+  /* Background color of the header */
+  color: white;
+  /* Text color for the header */
+}
+
+.table thead th {
+  vertical-align: middle !important;
+  /* Ensures the text is vertically centered */
+  text-align: center;
+  /* Centers the text horizontally */
+  /* padding: 15px; */
+  /* Adjust the padding as needed */
+}
+
+.purchase-container {
+  width: 100%;
+  /* Or a specific width like 90%, adjust as needed */
+}

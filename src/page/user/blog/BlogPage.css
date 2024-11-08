@@ -1,0 +1,41 @@
+.blog-container {
+    margin-top: 20px;
+}
+
+.blog-card {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 var(--primary-color);
+    min-height: 180px;
+    transition: transform 0.2s;
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+}
+
+.blog-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.blog-card h3 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.blog-card a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    padding: 10px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.blog-card a:hover {
+    color: var(--background-color);
+    background-color: var(--secondary-color);
+    text-decoration: none;
+}

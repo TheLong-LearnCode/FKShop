@@ -1,0 +1,59 @@
+.detail-atc-btn{
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.8;
+}
+
+.detail-atc-btn:hover{
+    opacity: 1;
+    color: var(--background-color);
+}
+
+.out-stock-btn{
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    font-weight: 500;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+}
+
+.out-stock-btn:hover{
+    opacity: 1;
+    color: var(--background-color);
+}
+
+.product-detail-buttons {
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+.product-detail-buttons .btn {
+    margin-right: 5px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border: 1px solid var(--primary-color);
+}
+
+.product-detail-buttons .btn.active{
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.product-detail-buttons .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+
+}
+
+.product-detail-subimg{
+    opacity: 0.7;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-detail-subimg:hover{
+    opacity: 1;
+}

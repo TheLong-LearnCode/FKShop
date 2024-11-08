@@ -1,0 +1,68 @@
+.order-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(162,202,113,1) 50%, rgba(246,233,107,1) 100%, rgba(255,255,255,1) 100%);
+}
+
+.order-success-content {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.order-success-content h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+.order-success-content h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.order-success-content p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.home-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.home-button:hover {
+    background-color: #45a049;
+}
+
+.viewPurchase-button {
+    background-color: #efe66b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.viewPurchase-button:hover {
+    background-color: #e3d61c;
+}

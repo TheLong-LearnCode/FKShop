@@ -1,0 +1,30 @@
+.header-icon {
+    color: #8c8c8c;
+    transition: color 0.3s;
+  }
+  
+  .header-icon:hover {
+    color: #1890ff;
+  }
+  .header-icon:click {
+    background-color: #ff1818;
+
+  }
+  
+  .header-avatar {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+  }
+  
+  .header-avatar:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .header-avatar .anticon {
+    color: #8c8c8c;
+    transition: color 0.3s;
+  }
+  
+  .header-avatar:hover .anticon {
+    color: #1890ff;
+  }
