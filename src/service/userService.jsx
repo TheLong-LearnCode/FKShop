@@ -20,11 +20,7 @@ export const updateUser = async (user, id) => {
     console.log("response in updateUser: ", response);
 
     // Check if the response is successful
-    if (response.status === 200) {
-      return response.data;
-    } else {
-      throw new Error("Failed to update account");
-    }
+    return response.data;
   } catch (error) {
     throw error;
   }

@@ -117,7 +117,7 @@ export default function AccountFormModal({
                 readOnly={mode === "view"}
               />
             </Form.Group>
-            <Form.Group controlId="formImage">
+            {/* <Form.Group controlId="formImage">
               <Form.Label>Image</Form.Label>
               {selectedUser?.image && (
                 <img
@@ -127,7 +127,7 @@ export default function AccountFormModal({
                 />
               )}
               <Form.Control type="file" readOnly={mode === "view"} />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group controlId="formRole">
               <Form.Label>Role</Form.Label>
               <Form.Control

@@ -51,7 +51,7 @@ export default function Header() {
         //console.log("user after verify token: ", userData);
         // const rs = await getUserByAccountID(userData?.accountID);
         // console.log("RS: ", rs);
-        
+
         setUserInfo(userData); // Lưu thông tin user vào state
       } catch (error) {
         console.error("Error verifying token: ", error);
@@ -60,7 +60,6 @@ export default function Header() {
     fetchUserInfo(); // Gọi API lấy thông tin người dùng
   }, [user]); //user.data là thông tin người dùng
   console.log("USER2: ", userInfo);
-  
 
   const handleNavClick = (linkName) => {
     startTransition(() => {
@@ -148,49 +147,50 @@ export default function Header() {
 
               <div className="searh-smart">
                 <form
-                className="upper-nav-search-form"
-                onSubmit={handleSearchSubmit}
-              >
-                <input
-                  type="search"
-                  placeholder="Search product..."
-                  aria-label="Search"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                />
-                <button type="submit">
-                  <box-icon name="search" color="#000000"></box-icon>
-                </button>
-              </form>
+                  className="upper-nav-search-form"
+                  onSubmit={handleSearchSubmit}
+                >
+                  <input
+                    type="search"
+                    placeholder="Search product..."
+                    aria-label="Search"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                  />
+                  <button type="submit">
+                    <box-icon name="search" color="#000000"></box-icon>
+                  </button>
+                </form>
 
-              {/* Hiển thị sản phẩm gợi ý */}
-              {searchTerm && suggestedProducts.length > 0 && (
-                <div className="suggestions">
-                  {suggestedProducts.map((product) => (
-                    <Link
-                      key={product.productID}
-                      to={`/detail/${product.productID}`}
-                      className="suggestion-item"
-                      style={{ textDecoration: "none" }}
-                      onClick={() => setSearchTerm(null)}
-                    >
-                      <img
-                        src={product.images[0].url}
-                        alt={product.name}
-                        className="suggestion-image"
-                      />
-                      <div className="suggestion-details">
-                        <span className="suggestion-name">{product.name}</span>
-                        <span className="suggestion-price">
-                          {formatCurrency(product.price)}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
+                {/* Hiển thị sản phẩm gợi ý */}
+                {searchTerm && suggestedProducts.length > 0 && (
+                  <div className="suggestions">
+                    {suggestedProducts.map((product) => (
+                      <Link
+                        key={product.productID}
+                        to={`/detail/${product.productID}`}
+                        className="suggestion-item"
+                        style={{ textDecoration: "none" }}
+                        onClick={() => setSearchTerm(null)}
+                      >
+                        <img
+                          src={product.images[0].url}
+                          alt={product.name}
+                          className="suggestion-image"
+                        />
+                        <div className="suggestion-details">
+                          <span className="suggestion-name">
+                            {product.name}
+                          </span>
+                          <span className="suggestion-price">
+                            {formatCurrency(product.price)}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-              
 
               <div className="upper-nav-user-actions">
                 <Link to={"/cart"} className="upper-nav-item">
@@ -198,9 +198,7 @@ export default function Header() {
                   <span>Cart ({cartProducts.length})</span>
                 </Link>
 
-                <div
-                  className="dropdown"
-                >
+                <div className="dropdown">
                   <a
                     className="dropdown-toggle upper-nav-item"
                     href="#"
@@ -208,7 +206,9 @@ export default function Header() {
                     data-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {userDataStatus === undefined || userDataStatus === null || user.data.status===400 ? (
+                    {userDataStatus === undefined ||
+                    userDataStatus === null ||
+                    user.data.status === 400 ? (
                       <>
                         <box-icon name="user" color="#ffffff"></box-icon>
                         <span>Account</span>
@@ -246,6 +246,12 @@ export default function Header() {
                       </>
                     ) : (
                       <>
+                        {userInfo?.data?.role !== "user" && (
+                          <Link to={"/admin"} className="dropdown-item">
+                            My FKShop
+                          </Link>
+                        )}
+
                         <Link
                           to={"/user/information"}
                           className="dropdown-item"
@@ -288,7 +294,7 @@ export default function Header() {
                 onMouseLeave={() => setShowProductMenu(false)}
               >
                 <Link
-                  to={'/all-products'}
+                  to={"/all-products"}
                   className={`nav-menu-link ${
                     activeLink === "Product" ? "active" : ""
                   }`}
