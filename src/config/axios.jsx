@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'js-cookie'
 // Define the base URL for the API
-const baseUrl = "https://be-fkitshop.onrender.com";
+const baseUrl = "https://be-fkitshop.onrender.com/fkshop";
 
 const api = axios.create({
   baseURL: baseUrl, // Setting the baseURL configuration directly in axios.create
