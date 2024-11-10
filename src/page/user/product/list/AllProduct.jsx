@@ -25,7 +25,7 @@ export default function AllProduct() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await api[GET]("product/products");
+                const response = await api[GET]("product/aproducts");
                 setProducts(response.data.data);
 
             } catch (err) {
