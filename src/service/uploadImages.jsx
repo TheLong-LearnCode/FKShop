@@ -4,6 +4,16 @@ import { UploadOutlined } from "@ant-design/icons";
 import api from "../config/axios";
 import { POST } from "../constants/httpMethod";
 
+export const uploadAvater = async(accountID, formData) => {
+  try {
+    const response = await api[POST](`/accounts/avatar/${accountID}`, formData);
+    return response.data.url; // Assuming the response returns the uploaded avatar URL
+  } catch (error) {
+    console.error("Error uploading avatar:", error);
+    throw error;
+  }
+}
+
 export const ImageUploader = ({ fileList, setFileList, uploading, setUploading }) => {
   const uploadImage = async (file) => {
     try {

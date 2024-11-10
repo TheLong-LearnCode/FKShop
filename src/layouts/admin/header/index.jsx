@@ -91,12 +91,12 @@ export default function HeaderLayout() {
       >
         <div style={{ flex: 1 }}></div>
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-          <Search
-            placeholder="Search for..."
-            onSearch={(value) => console.log(value)}
-            style={{ width: 300 }}
-            prefix={<SearchOutlined />}
-          />
+            {/* <Search
+              placeholder="Search for..."
+              onSearch={(value) => console.log(value)}
+              style={{ width: 300 }}
+              prefix={<SearchOutlined />}
+            /> */}
         </div>
         <div
           style={{

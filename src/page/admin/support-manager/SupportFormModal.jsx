@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, Table, Row, Col } from "antd";
+import { Modal, Button, Table, Row, Col, Card } from "antd";
 import { getModalHeaderMode } from "../../../util/GetModalHeaderMode";
 
 export default function SupportFormModal({
@@ -7,6 +7,7 @@ export default function SupportFormModal({
   showModal,
   handleCloseModal,
   selectedSupport,
+  user,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -14,6 +15,7 @@ export default function SupportFormModal({
   if (!selectedSupport || !selectedSupport.data) return null;
 
   const { accountID, customerName, labSupports } = selectedSupport.data;
+  console.log("USER: ", user);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
@@ -78,29 +80,41 @@ export default function SupportFormModal({
     <Modal
       open={showModal}
       onCancel={handleCloseModal}
-      width="80%"
-      title={<h4>Customer Information</h4>}
+      width="60%"
+      //title={<h4>Customer Information</h4>}
       footer={null}
     >
-      <Row gutter={16}>
-        <Col span={12}>
-          <p>
-            <strong>Customer ID:</strong> {accountID}
-          </p>
-          <p>
-            <strong>Customer Name:</strong> {customerName}
-          </p>
-        </Col>
-        <Col span={12}>
-          <div style={{ textAlign: "center", marginBottom: "1rem" }}>
-            <img
-              src="/img/user.png"
-              alt="Customer Avatar"
-              style={{ width: "100px", height: "100px" }}
-            />
-          </div>
-        </Col>
-      </Row>
+      <Card>
+        <Row gutter={16}>
+          <Col span={12}>
+            <div style={{ textAlign: "center" }}>
+              <img
+                src={user?.image || "/img/user.png"}
+                alt="Customer Avatar"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  borderRadius: "50%",
+                }}
+              />
+            </div>
+          </Col>
+          <Col span={12}>
+            <p>
+              <strong>Customer ID:</strong> {accountID}
+            </p>
+            <p>
+              <strong>Customer Name:</strong> {customerName}
+            </p>
+            <p>
+              <strong>Email: </strong> {user?.email}
+            </p>
+            <p>
+              <strong>Phone: </strong> {user?.phoneNumber}
+            </p>
+          </Col>
+        </Row>
+      </Card>
 
       <h4>Support Details:</h4>
       <Table
@@ -114,10 +128,10 @@ export default function SupportFormModal({
           onChange: onPageChange,
         }}
       />
-      <h4>Status:</h4>
+      {/* <h4>Status:</h4>
       <p>
         {["Received", "Approved", "Done"][labSupports[0].supporting?.status]}
-      </p>
+      </p> */}
       <h4>Description:</h4>
       <p>{labSupports[0].supporting.description}</p>
     </Modal>

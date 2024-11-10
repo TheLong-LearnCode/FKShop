@@ -3,7 +3,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import SupportTable from "./SupportTable";
 import SupportFormModal from "./SupportFormModal";
 import { Notification } from "../../../component/UserProfile/UpdateAccount/Notification";
-import { getAllSupport, updateSupportStatus, getSupportByAccountIDAndSupportingID, updateSupportDate } from "../../../service/supportService";
+import {
+  getAllSupport,
+  updateSupportStatus,
+  getSupportByAccountIDAndSupportingID,
+  updateSupportDate,
+} from "../../../service/supportService";
+import { notification } from "antd";
+import { useSelector } from "react-redux";
+import { verifyToken } from "../../../service/authUser";
+import { getUserByAccountID } from "../../../service/userService";
 
 export default function SupportManager() {
   const [supports, setSupports] = useState([]);
@@ -12,10 +21,20 @@ export default function SupportManager() {
   const [selectedSupport, setSelectedSupport] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const supportsPerPage = 5;
+  const [userGetSupport, setUserGetSupport] = useState(null);
+  const user = useSelector((state) => state.auth);
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     fetchAllSupports();
-  }, []);
+    fetchUser();
+  }, [user]);
+
+  const fetchUser = async () => {
+    const rs = await verifyToken(user); // Pass the user's token here
+    const u = rs.data;
+    setUserInfo(u);
+  };
 
   const fetchAllSupports = async () => {
     try {
@@ -24,10 +43,17 @@ export default function SupportManager() {
         setSupports(response.data);
       }
       console.log("RESPONSE.DATA: ", response.data);
-      
+
       Notification(response.message, "", 4, "success");
     } catch (error) {
       console.error("Error fetching supports:", error);
+      if (error === 403) {
+        notification.error({
+          message: "Forbidden",
+          description: `Role ${userInfo.role} don't have permissions to view support lists!!`,
+          duration: 5, // Duration in seconds
+        });
+      }
       Notification("Error fetching supports", "", 4, "error");
     }
   };
@@ -47,17 +73,44 @@ export default function SupportManager() {
       fetchAllSupports();
     } catch (error) {
       console.log("Error updating support status:", error);
+      if (error === 403) {
+        notification.error({
+          message: "Forbidden",
+          description: `Role ${userInfo.role} don't have permissions to updating support status!!`,
+          duration: 5, // Duration in seconds
+        });
+      }
       Notification("Error updating support status", "", 4, "warning");
     }
   };
 
   const handleViewSupportDetails = async (support) => {
     try {
-      const response = await getSupportByAccountIDAndSupportingID(support.accountID, support.supporting.supportingID);
+      // Fetch support details
+      const response = await getSupportByAccountIDAndSupportingID(
+        support.accountID,
+        support.supporting.supportingID
+      );
       setSelectedSupport(response);
+      try {
+        const userResponse = await getUserByAccountID(support.accountID);
+        setUserGetSupport(userResponse.data);
+      } catch (error) {
+        console.error(
+          `Error fetching user for accountID ${support.accountID}:`,
+          error
+        );
+      }
       setShowModal(true);
     } catch (error) {
       console.error("Error fetching support details:", error);
+      if (error === 403) {
+        notification.error({
+          message: "Forbidden",
+          description: `Role ${userInfo.role} doesn't have permissions to view support detail!`,
+          duration: 5, // Duration in seconds
+        });
+      }
       Notification("Error fetching support details", "", 4, "error");
     }
   };
@@ -70,6 +123,13 @@ export default function SupportManager() {
       Notification("Support deleted successfully", "", 4, "success");
     } catch (error) {
       console.error("Error deleting support:", error);
+      if (error === 403) {
+        notification.error({
+          message: "Forbidden",
+          description: `Role ${userInfo.role} don't have permissions to delete support!!`,
+          duration: 5, // Duration in seconds
+        });
+      }
       Notification("Error deleting support", "", 4, "warning");
     }
   };
@@ -82,7 +142,7 @@ export default function SupportManager() {
     try {
       const response = await updateSupportDate({
         supportingID: support.supporting.supportingID,
-        date: date.format('YYYY-MM-DD'),
+        date: date.format("YYYY-MM-DD"),
       });
       Notification(response.message, "", 4, "success");
       fetchAllSupports();
@@ -117,6 +177,7 @@ export default function SupportManager() {
         selectedSupport={selectedSupport}
         showModal={showModal}
         handleCloseModal={handleCloseModal}
+        user={userGetSupport}
       />
     </Container>
   );

@@ -97,7 +97,7 @@ export default function UserProfile() {
                 <div className="row justify-content-center">
                     <div className="col-lg-10 col-md-12 col-xs-12">
                         <div className="row">
-                            <div className="col-lg-3 col-md-12 col-xs-12 border-right">
+                            <div className="col-lg-2 col-md-12 col-xs-12 border-right">
                                 {/* Pass the activeTab and setActiveTab to Sidebar */}
                                 <Sidebar 
                                     activeTab={activeTab} 
@@ -105,7 +105,7 @@ export default function UserProfile() {
                                     userInfo={userFinalInfo} 
                                 />
                             </div>
-                            <div className='col-lg-9 col-md-12 col-xs-12 profile-display'>
+                            <div className='col-lg-10 col-md-12 col-xs-12 profile-display'>
                                 {/* Show a dismissible alert if showMessage is true */}
                                 {/* Render the content based on the activeTab */}
                                 {/* lần đầu vào -> user.data?.accounts , khi load lại trang -> user.data?.data */}

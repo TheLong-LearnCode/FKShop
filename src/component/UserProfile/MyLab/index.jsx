@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import './index.css'
-import { getMyLab, downloadMyLab } from '../../../service/userService';
-import { getLabByProductID } from '../../../service/labService';
-import { Pagination, Select, message } from 'antd';
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import { getMyLab, downloadMyLab } from "../../../service/userService";
+import { getLabByProductID } from "../../../service/labService";
+import { Pagination, Select, message } from "antd";
 
 const { Option } = Select;
 
@@ -14,71 +14,61 @@ export default function MyLab({ userInfo }) {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const pageSize = 4; // Số item trên mỗi trang
 
+  const fetchGetMyLab = async () => {
+    if (userInfo?.accountID) {
+      const response = await getMyLab(userInfo.accountID);
+      console.log("response in MyLab: ", response.data.orderLabs);
+      setAllLabs(response.data.orderLabs);
+      setFilteredLabs(response.data.orderLabs);
+
+      // Extract unique products from labs
+      const uniqueProducts = [
+        ...new Map(
+          response.data.orderLabs.map((lab) => [
+            lab.lab.productID,
+            lab.lab.productName,
+          ])
+        ),
+      ].map(([productId, productName]) => ({
+        id: productId,
+        name: productName,
+      }));
+
+      setProducts(uniqueProducts);
+    }
+  };
   useEffect(() => {
-    const fetchGetMyLab = async () => {
-      if (userInfo?.accountID) {
-        const response = await getMyLab(userInfo.accountID);
-        console.log("response in MyLab: ", response.data.orderLabs);
-        setAllLabs(response.data.orderLabs);
-        setFilteredLabs(response.data.orderLabs);
-        
-        // Extract unique products from labs
-        const uniqueProducts = [...new Set(response.data.orderLabs.map(lab => lab.lab.productID))];
-        setProducts(uniqueProducts.map((productId, productName) => ({ id: productId, name: `${productId}` })));
-      }
-    };
     fetchGetMyLab();
   }, [userInfo]);
 
   useEffect(() => {
     if (selectedProductId) {
-      fetchLabsByProductID(selectedProductId);
+      const filtered = allLabs.filter(lab => lab.lab.productID === selectedProductId);
+      setFilteredLabs(filtered);
     } else {
       setFilteredLabs(allLabs);
     }
     setCurrentPage(1);
   }, [selectedProductId, allLabs]);
-
-  const fetchLabsByProductID = async (productID) => {
-    try {
-      const response = await getLabByProductID(productID);
-      const filteredLabs = response.data.map(lab => ({
-        lab: {
-          labID: lab.labID,
-          productID: lab.productID,
-          name: lab.name,
-          fileNamePDF: lab.fileNamePDF
-        }
-      }));
-      setFilteredLabs(filteredLabs);
-    } catch (error) {
-      console.error("Error fetching labs by productID:", error);
-      message.error(error.response.data.message);
-    }
-  };
-
-  // const handleDownload = async (lab) => {
-  //   try {
-  //     const response = await downloadMyLab(userInfo?.accountID, lab.orderID, lab.lab.labID, lab.lab.productID, lab.lab.fileNamePDF);
-  //     window.location.href = response;
-  //     //window.open(response, '_blank');
-  //   } catch (error) {
-  //     console.error('Error downloading lab:', error);
-  //     message.error(error.response.data.message);
-  //   }
-  // };
+  
   const handleDownload = async (lab) => {
     try {
-      const url = await downloadMyLab(userInfo?.accountID, lab.orderID, lab.lab.labID, lab.lab.productID, lab.lab.fileNamePDF);
-      const link = document.createElement('a');
+      const url = await downloadMyLab(
+        userInfo?.accountID,
+        lab.orderID,
+        lab.lab.labID,
+        lab.lab.productID,
+        lab.lab.fileNamePDF
+      );
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', lab.lab.fileNamePDF); // Set the file name for download
+      link.setAttribute("download", lab.lab.fileNamePDF); // Set the file name for download
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
     } catch (error) {
-      console.error('Error downloading lab:', error);
-      message.error(error.response?.data?.message || 'Error downloading lab');
+      console.error("Error downloading lab:", error);
+      message.error(error.response?.data?.message || "Error downloading lab");
     }
   };
 
@@ -98,8 +88,10 @@ export default function MyLab({ userInfo }) {
 
   return (
     <div className="container">
-      <h4 className='text-center'><strong>My LAB</strong></h4>
-      <div style={{ marginBottom: '16px' }}>
+      <h4 className="text-center">
+        <strong>My LAB</strong>
+      </h4>
+      <div style={{ marginBottom: "16px" }}>
         <Select
           style={{ width: 200 }}
           placeholder="Filter by Product"
@@ -126,9 +118,13 @@ export default function MyLab({ userInfo }) {
             {paginatedLabList.map((lab) => (
               <tr key={lab.lab.labID}>
                 <td className="col-8">{lab.lab.fileNamePDF}</td>
-                <td className='text-center col-2'>
-                  <button className='btn' onClick={() => handleDownload(lab)}>
-                    <box-icon name='download' type='solid' color='#3fe70f'></box-icon>
+                <td className="text-center col-2">
+                  <button className="btn" onClick={() => handleDownload(lab)}>
+                    <box-icon
+                      name="download"
+                      type="solid"
+                      color="#3fe70f"
+                    ></box-icon>
                   </button>
                 </td>
               </tr>
@@ -136,7 +132,10 @@ export default function MyLab({ userInfo }) {
           </tbody>
         </table>
       </div>
-      <div className="pagination-container" style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+      <div
+        className="pagination-container"
+        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
         <Pagination
           current={currentPage}
           total={filteredLabs.length}
@@ -146,5 +145,5 @@ export default function MyLab({ userInfo }) {
         />
       </div>
     </div>
-  )
+  );
 }

@@ -18,7 +18,7 @@ const AdminLayout = () => {
   useEffect(() => {
     const token = Cookies.get("token");
     dispatch(loadUserFromCookie(token));
-    console.log("token in AdminLayout",token);
+    console.log("token in AdminLayout", token);
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
@@ -36,13 +36,11 @@ const AdminLayout = () => {
       <>
         <Layout style={{ minHeight: "100vh" }}>
           <Sider trigger={null} collapsible collapsed={collapsed} width={250}>
-            <div
-              className="logo"
-              style={{
-                height: "32px",
-                margin: "16px",
-                background: "rgba(255, 255, 255, 0.3)",
-              }}
+            <img
+              className="upper-nav-logo"
+              src="/img/Logo.png"
+              alt="shop logo"
+              style={{ marginLeft: "5%" }}
             />
             <Menu />
           </Sider>
@@ -82,14 +80,17 @@ const AdminLayout = () => {
     <>
       <Layout style={{ minHeight: "100vh" }}>
         <Sider trigger={null} collapsible collapsed={collapsed} width={250}>
-          <div
-            className="logo"
-            style={{
-              height: "32px",
-              margin: "16px",
-              background: "rgba(255, 255, 255, 0.3)",
-            }}
-          />
+            <img
+              className="upper-nav-logo"
+              src="/img/LogoAdmin.png"
+              alt="shop logo"
+              style={{
+                marginLeft: collapsed ? "3%" : "20%",
+                width: collapsed ? "90px" : "",
+                height: collapsed ? "90px" : "",
+                transition: "0.5s",
+              }}
+            />
           <Menu />
         </Sider>
         <Layout>
@@ -104,8 +105,6 @@ const AdminLayout = () => {
               height: 64,
               position: "absolute",
               top: 0,
-              left: collapsed ? 80 : 250,
-              zIndex: 1001,
             }}
           />
           <Content

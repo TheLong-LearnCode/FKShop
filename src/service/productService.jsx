@@ -44,6 +44,17 @@ export const updateProduct = async (productID, formData) => {
 };
 
 // -------------------------------GET------------------------------------
+
+export const getProductByName = async (search) => {
+  try {
+    const response = await api[GET](`/product/by-name/${search}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products by name:", error);
+    throw error;
+  }
+}
+
 export const getActiveProduct = async () => {
   try {
     const response = await api[GET]("/product/aproducts");

@@ -25,6 +25,9 @@ export const getAllSupport = async () => {
     const response = await api[GET]("support/all-supports");
     return response.data;
   } catch (error) {
+    if(error.status === 403) {
+      throw error.status;
+    }
     throw error;
   }
 };

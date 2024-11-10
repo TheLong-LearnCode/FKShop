@@ -107,6 +107,7 @@ const ProductModal = ({
   };
   const handleOk = () => {
     if (mode === "view") {
+      setTotalPrice(0);
       onCancel();
       return;
     }
@@ -150,6 +151,8 @@ const ProductModal = ({
       for (const { uid, file } of updatedImages) {
         const formData = new FormData();
         formData.append("images", file); // Add new image file
+        console.log("FILE:" , file);
+        
         for (let [key, value] of formData.entries()) {
           console.log(key, value, typeof value);
         }
@@ -189,8 +192,8 @@ const ProductModal = ({
         mode === "add"
           ? "* Add New Product *"
           : mode === "edit"
-          ? "* Edit Product *"
-          : "* View Product *"
+            ? "* Edit Product *"
+            : "* View Product *"
       }
       onCancel={onCancel}
       onOk={handleOk}
@@ -228,8 +231,8 @@ const ProductModal = ({
                       fileList.length > 0
                         ? Promise.resolve()
                         : Promise.reject(
-                            new Error("Please upload at least one image")
-                          ),
+                          new Error("Please upload at least one image")
+                        ),
                   },
                 ]}
               >
@@ -469,8 +472,11 @@ const ProductModal = ({
                                     type="link"
                                     onClick={() => {
                                       remove(name);
+                                      calculateTotal();
                                       setSelectedStock(0);
-                                      setTotalPrice(0);
+                                      if (items.length == 0) {
+                                        setTotalPrice(0);
+                                      }
                                     }}
                                   >
                                     Remove
@@ -496,7 +502,12 @@ const ProductModal = ({
                     </p>
                     <span>
                       Total Item's Price Expected:{" "}
-                      <span style={{ color: "red" }}>{totalPrice} VNĐ</span>
+                      <span style={{ color: "red" }}>
+                        {new Intl.NumberFormat("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        }).format(totalPrice)}
+                      </span>
                     </span>
                   </Card>
                 </Col>

@@ -119,7 +119,7 @@ export default function OrderFormModal({
                   style={{ margin: "20px 20px", padding: "20px 20px" }}
                   hoverable={true}
                 >
-                  <div style={{ textAlign: "center" }}>
+                  <div style={{ textAlign: "center", marginBottom: "5%"}}>
                     <img
                       src={user?.image || "/img/user.png"}
                       alt="Customer Avatar"

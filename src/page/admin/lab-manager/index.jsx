@@ -210,7 +210,7 @@ const LabManager = () => {
     <div style={{ padding: "20px" }}>
       <Space style={{ display: "flex", justifyContent: "flex-end" }}>
         <Select
-          defaultValue={1} // Default to showing active labs
+          defaultValue={"all"} // Default to showing active labs
           onChange={handleStatusChange}
           style={{
             width: 200,

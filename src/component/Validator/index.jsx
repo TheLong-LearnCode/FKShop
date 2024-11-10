@@ -229,14 +229,14 @@ Validator.updateFullName = function (selector, getFullName, message) {
         selector: selector,
         test: function (value) {
             // Get the current full name value
-            const currentFullName = getFullName;
+            const currentFullName = getFullName();
 
             // Check if the value is empty or unchanged
             if (value === currentFullName) {
                 return undefined; // Return the current value
             }
             // Regex for valid full name
-            const nameRegex = /^[a-zA-Z\s]+$/;
+            const nameRegex = /^[a-zA-ZĐđÀ-ỹỲỹ ]+$/; //gõ tên tiếng việt
 
             // Validate the new value
             return nameRegex.test(value) ? undefined : message || 'Invalid full name';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Modal, message, Image, Carousel, Select } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import {
   addProduct,
   getAllProducts,
@@ -10,12 +10,13 @@ import {
   deleteImages,
   saleReport,
   getProductByType,
+  getProductByName,
 } from "../../../service/productService";
 import "./index.css";
 import ProductTable from "./ProductTable";
 import ProductModal from "./ProductModal";
 import { getAllCategories } from "../../../service/categoryService";
-import { ProductUploadImage } from "../../../service/productService";
+import Search from "antd/es/input/Search";
 
 const ProductManager = () => {
   const [products, setProducts] = useState([]);
@@ -31,6 +32,7 @@ const ProductManager = () => {
   const [deletedImages, setDeletedImages] = useState([]);
   const [updatedImages, setUpdatedImages] = useState([]);
   const [filterType, setFilterType] = useState("all");
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -40,11 +42,25 @@ const ProductManager = () => {
     fetchAllItems();
   }, []);
 
+  const fetchSearchProducts = async (search) => {
+    if (search) {
+      try {
+        const response = await getProductByName(search);
+        setProducts(response.data);
+        //message.success("Products fetched successfully");
+      } catch (error) {
+        message.error("Failed to fetch products");
+      }
+    } else {
+      fetchAllProducts(); // Fetch all if search is cleared
+    }
+  };
+
   const fetchAllCategories = async () => {
     try {
       const response = await getAllCategories();
       setCategories(response);
-      message.success("Categories fetched successfully");
+      //message.success("Categories fetched successfully");
     } catch (error) {
       message.error("Failed to fetch categories");
     }
@@ -54,7 +70,7 @@ const ProductManager = () => {
     try {
       const response = await getAllProducts();
       setProducts(response.data);
-      message.success(response.message);
+      //message.success(response.message);
     } catch (error) {
       message.error("Failed to fetch products");
     }
@@ -62,7 +78,7 @@ const ProductManager = () => {
   const fetchAllItems = async () => {
     const response = await getProductByType("item");
     setItems(response.data);
-  }
+  };
   const handleTypeChange = (value) => {
     setFilterType(value);
   };
@@ -77,11 +93,6 @@ const ProductManager = () => {
     setSelectedProduct(response.data);
   };
 
-  const handleUpload = async (file) => {
-    const response = await ProductUploadImage(file);
-    setFileList([...fileList, response]);
-    return response;
-  };
   const handleDelete = async (product) => {
     console.log("selected product: ", product);
 
@@ -163,93 +174,110 @@ const ProductManager = () => {
     }
   };
 
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    fetchSearchProducts(value);
+  };
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    fetchSearchProducts(value); // Call fetchSearchProducts on every change
+  };
+
   return (
     <div style={{ padding: "20px" }}>
-      <div style={{ marginBottom: "20px" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <Button onClick={handleExport}>
-              <img
-                src={"/img/icons8-microsoft-excel-96.png"}
-                alt="Your Icon"
-                style={{ width: 30, height: 30 }}
-              />
-              Sale Report
-            </Button>
-          </div>
-          <div>
-            <Select
-              value={filterType}
-              onChange={handleTypeChange}
-              style={{ width: 200 }}
-            >
-              <Option value="all">All</Option>
-              <Option value="kit">Kit</Option>
-              <Option value="item">Item</Option>
-            </Select>
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={() => showModal("add", null, categories)}
-              style={{ marginBottom: "20px" }}
-              className="ml-1"
-            >
-              Add New Product
-            </Button>
-          </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "10px",
+        }}
+      >
+        <div>
+          <Button onClick={handleExport}>
+            <img
+              src={"/img/icons8-microsoft-excel-96.png"}
+              alt="Your Icon"
+              style={{ width: 30, height: 30 }}
+            />
+            Sale Report
+          </Button>
         </div>
-        <ProductTable
-          products={filteredProducts}
-          onView={(product) => showModal("view", product)}
-          onEdit={(product) => showModal("edit", product)}
-          onDelete={handleDelete}
-          onViewImages={handleViewImages}
-        />
-        <ProductModal
-          visible={isModalVisible}
-          mode={modalMode}
-          product={selectedProduct}
-          categories={categories}
-          items={items}
-          onCancel={handleModalCancel}
-          onOk={handleModalOk}
-          fileList={fileList}
-          setFileList={setFileList}
-          uploading={uploading}
-          setUploading={setUploading}
-          deletedImages={deletedImages}
-          updatedImages={updatedImages}
-          setDeletedImages={setDeletedImages}
-          setUpdatedImages={setUpdatedImages}
-        />
-        <Modal
-          title="All Images"
-          visible={isImagesModalVisible}
-          onCancel={() => setIsImagesModalVisible(false)}
-          footer={null}
-        >
-          <Carousel autoplay>
-            {visibleImages.map((image) => (
-              <div key={image?.id} style={{ textAlign: "center" }}>
-                <Image
-                  src={image?.url}
-                  alt="product image"
-                  width={300}
-                  height={300}
-                  style={{ objectFit: "cover", alignContent: "center" }}
-                  fallback="https://s3.ap-southeast-2.amazonaws.com/fkshop/Product/no-image.png"
-                />
-              </div>
-            ))}
-          </Carousel>
-        </Modal>
+        <div>
+          <Search
+            placeholder="Search for..."
+            onSearch={handleSearch}
+            onChange={handleSearchChange}
+            style={{ width: 300 }}
+            prefix={<SearchOutlined />}
+          />
+        </div>
+        <div>
+          <Select
+            value={filterType}
+            onChange={handleTypeChange}
+            style={{ width: 200 }}
+          >
+            <Option value="all">All</Option>
+            <Option value="kit">Kit</Option>
+            <Option value="item">Item</Option>
+          </Select>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => showModal("add", null, categories)}
+            className="ml-1"
+          >
+            Add New Product
+          </Button>
+        </div>
       </div>
+      <ProductTable
+        products={filteredProducts}
+        onView={(product) => showModal("view", product)}
+        onEdit={(product) => showModal("edit", product)}
+        onDelete={handleDelete}
+        onViewImages={handleViewImages}
+      />
+      <ProductModal
+        visible={isModalVisible}
+        mode={modalMode}
+        product={selectedProduct}
+        categories={categories}
+        items={items}
+        onCancel={handleModalCancel}
+        onOk={handleModalOk}
+        fileList={fileList}
+        setFileList={setFileList}
+        uploading={uploading}
+        setUploading={setUploading}
+        deletedImages={deletedImages}
+        updatedImages={updatedImages}
+        setDeletedImages={setDeletedImages}
+        setUpdatedImages={setUpdatedImages}
+      />
+      <Modal
+        title="All Images"
+        visible={isImagesModalVisible}
+        onCancel={() => setIsImagesModalVisible(false)}
+        footer={null}
+      >
+        <Carousel autoplay>
+          {visibleImages.map((image) => (
+            <div key={image?.id} style={{ textAlign: "center" }}>
+              <Image
+                src={image?.url}
+                alt="product image"
+                width={300}
+                height={300}
+                style={{ objectFit: "cover", alignContent: "center" }}
+                fallback="https://s3.ap-southeast-2.amazonaws.com/fkshop/Product/no-image.png"
+              />
+            </div>
+          ))}
+        </Carousel>
+      </Modal>
     </div>
   );
 };

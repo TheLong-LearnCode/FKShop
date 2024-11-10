@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { getModalHeaderMode } from "../../../util/GetModalHeaderMode";
-
+import './AccountFormModal.css'
 export default function AccountFormModal({
   mode,
   selectedUser,

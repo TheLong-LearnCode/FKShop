@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import api from "../config/axios";
 
 import { GET, PUT, POST } from "../constants/httpMethod";
@@ -21,6 +22,9 @@ export const updateOrderStatus = async (id, status) => {
     );
     return response.data;
   } catch (error) {
+    if(error.status === 403){
+      throw error.status;
+    }
     throw error;
   }
 };
@@ -36,10 +40,12 @@ export const getOrderDetailsByOrderID = async (id) => {
 export const getAllOrders = async () => {
   try {
     const response = await api[GET]("/orders/allorders");
-    // console.log("response::: ", response);
     return response.data;
   } catch (error) {
-    console.log("Error: " + error);
+    console.log("Error: ", error);
+    if(error.status === 403){
+      throw error.status;
+    }
   }
 };
 export const checkOutOrder = async (ordersRequest, orderDetailsRequest) => {

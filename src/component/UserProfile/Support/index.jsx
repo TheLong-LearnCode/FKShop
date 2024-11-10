@@ -416,7 +416,7 @@ export default function Support({ userInfo }) {
             </p>
             <p>
               <strong>Support Times:</strong>{" "}
-              {`#${5 - selectedSupport.supporting.countSupport}`}
+              {`#${selectedSupport.supporting.countSupport}/${selectedSupport.maxSupTimes}`}
             </p>
             <p>
               <strong>Request Date:</strong>{" "}
@@ -459,15 +459,6 @@ export default function Support({ userInfo }) {
               value={selectedLab?.lab.labID}
               dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
             >
-              {/* {userLabs.map((item) => (
-                <Option
-                  key={item.lab.labID}
-                  value={item.lab.labID}
-                  style={{ padding: "10px", height: "auto" }}
-                >
-                  {item.lab.labID} - {item.lab.name}
-                </Option>
-              ))} */}
               {Array.from(new Set(userLabs.map((item) => item.lab.labID))).map(
                 (labID) => {
                   const lab = userLabs.find((item) => item.lab.labID === labID);

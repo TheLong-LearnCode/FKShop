@@ -12,6 +12,7 @@ import { GET } from "../../../constants/httpMethod";
 import api from "../../../config/axios";
 import { message } from "antd";
 import { formatCurrency } from "../../../util/CurrencyUnit";
+import { getUserByAccountID } from "../../../service/userService";
 
 export default function Header() {
   const [isPending, startTransition] = useTransition();
@@ -48,6 +49,9 @@ export default function Header() {
       try {
         userData = await verifyToken(userToken); // Gọi hàm verifyToken để lấy dữ liệu
         //console.log("user after verify token: ", userData);
+        // const rs = await getUserByAccountID(userData?.accountID);
+        // console.log("RS: ", rs);
+        
         setUserInfo(userData); // Lưu thông tin user vào state
       } catch (error) {
         console.error("Error verifying token: ", error);
@@ -55,7 +59,7 @@ export default function Header() {
     };
     fetchUserInfo(); // Gọi API lấy thông tin người dùng
   }, [user]); //user.data là thông tin người dùng
-  console.log("USER2: ", user);
+  console.log("USER2: ", userInfo);
   
 
   const handleNavClick = (linkName) => {

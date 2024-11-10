@@ -14,10 +14,15 @@ export default function ProfileSidebar({ activeTab, setActiveTab, userInfo }) {
         <strong>My Profile</strong>
       </h4>
       <img
-        src= {userInfo?.image ? userInfo.image : "/img/user.png"} // Replace this with your avatar image path
+        src={userInfo?.image ? userInfo.image : "/img/user.png"} // Replace this with your avatar image path
         alt="Profile"
-        className="mb-3"
-        style={{height: "100px", width: "100px", borderRadius: "100%"}}
+        className="profile-avatar"
+        style={{
+          height: "100px",
+          width: "100px",
+          borderRadius: "100%",
+          objectFit: "cover",
+        }}
       />
       <button
         className={clsx("btn btn-outline-dark w-100 mb-2", {
@@ -81,7 +86,6 @@ export default function ProfileSidebar({ activeTab, setActiveTab, userInfo }) {
       >
         My Lab
       </button>
-
     </div>
   );
 }

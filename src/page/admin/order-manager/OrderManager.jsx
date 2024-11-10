@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Cookies from "js-cookie";
 import {
-  cancelOrder,
+  //cancelOrder,
   exportExcel,
   getAllOrders,
   getOrderDetailsByOrderID,
@@ -11,8 +12,10 @@ import { getProductById } from "../../../service/productService";
 import OrderTable from "./OrderTable";
 import OrderFormModal from "./OrderFormModal";
 import { Notification } from "../../../component/UserProfile/UpdateAccount/Notification";
-import { Modal } from "antd";
+import { Modal, notification } from "antd";
 import { getUserByAccountID } from "../../../service/userService";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyToken } from "../../../service/authUser";
 //import { getUserByAccountID } from "../../../service/userService";
 
 export default function OrderManager() {
@@ -26,15 +29,22 @@ export default function OrderManager() {
   const ordersPerPage = 5;
   const [activeTab, setActiveTab] = useState("all");
   const [exportTimeframe, setExportTimeframe] = useState("week");
-
+  const user = useSelector((state) => state.auth);
+  const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
+    fetchUser();
     fetchAllOrders();
-  }, []);
+  }, [user]);
+
+  const fetchUser = async () => {
+    const rs = await verifyToken(user); // Pass the user's token here
+    const u = rs.data;
+    setUserInfo(u);
+  };
 
   const fetchAllOrders = async () => {
     try {
       const response = await getAllOrders();
-  
       let ordersData = [];
       // Check if response.data has the orders array or if it's directly an array
       if (response.data && response.data.orders) {
@@ -46,7 +56,7 @@ export default function OrderManager() {
         setOrders([]);
         return;
       }
-  
+
       // Fetch user data for each order by accountID
       const ordersWithUserDetails = await Promise.all(
         ordersData.map(async (order) => {
@@ -54,16 +64,25 @@ export default function OrderManager() {
             const userResponse = await getUserByAccountID(order.accountID);
             return { ...order, user: userResponse.data }; // Add user data to each order
           } catch (error) {
-            console.error(`Error fetching user for accountID ${order.accountID}:`, error);
+            console.error(
+              `Error fetching user for accountID ${order.accountID}:`,
+              error
+            );
             return { ...order, user: null }; // Return order with null user if error occurs
           }
         })
       );
-  
+
       setOrders(ordersWithUserDetails);
     } catch (error) {
-      console.error("Error fetching orders:", error);
-      Notification("Error fetching orders", "", 4, "error");
+      console.log("Error:", error); //403
+      if (error === 403) {
+        notification.error({
+          message: "Forbidden",
+          description: `Role ${userInfo.role} don't have permissions to access this page!!`,
+          duration: 5, // Duration in seconds
+        });
+      }
     }
   };
   const handleNext = () => {
@@ -104,7 +123,15 @@ export default function OrderManager() {
             fetchAllOrders();
           } catch (error) {
             console.log("ERROR", error);
+            if(error === 403) {
+              notification.error({
+                message: "Forbidden",
+                description: `Role ${userInfo.role} don't have permissions to update order's status!!`,
+                duration: 5, // Duration in seconds
+              });
+            }
             Notification(error.response.data.message, "", 4, "warning");
+            
           }
         },
       });
@@ -124,7 +151,7 @@ export default function OrderManager() {
               ...detail,
               image: product.data.images[0]?.url,
               productName: product.data.name,
-              productType: product.data.type
+              productType: product.data.type,
             };
           })
         );
